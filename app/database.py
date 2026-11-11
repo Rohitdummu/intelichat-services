@@ -16,14 +16,12 @@ class Base(DeclarativeBase):
 
 
 def _ensure_pgvector_extension() -> None:
-    try:
-        with engine.begin() as connection:
-            connection.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
-    except Exception:
-        pass
+    with engine.begin() as connection:
+        connection.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
 
 
 def ensure_schema() -> None:
+    _ensure_pgvector_extension()
     inspector = inspect(engine)
     existing_tables = set(inspector.get_table_names())
     with engine.begin() as connection:

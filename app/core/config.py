@@ -23,6 +23,10 @@ class Settings(BaseSettings):
     algorithm: str = "HS256"
 
     openai_api_key: str | None = None
+    azure_openai_endpoint: str | None = None
+    azure_openai_api_version: str = "2024-10-21"
+    azure_openai_chat_deployment: str | None = None
+    azure_openai_embedding_deployment: str | None = None
     openai_chat_model: str = "gpt-4o-mini"
     openai_embedding_model: str = "text-embedding-3-small"
 
